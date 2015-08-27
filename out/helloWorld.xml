@@ -1,0 +1,47 @@
+<opt nodenames="FileAST">
+  <attr_names></attr_names>
+  <children>ext[0]</children>
+  <children nodenames="FuncDef">
+    <attr_names></attr_names>
+    <children>decl</children>
+    <children nodenames="Decl">
+      <attr_names name="main">
+      </attr_names>
+      <children>type</children>
+      <children nodenames="FuncDecl">
+        <attr_names></attr_names>
+        <children>type</children>
+        <children nodenames="TypeDecl">
+          <attr_names declname="main">
+          </attr_names>
+          <children>type</children>
+          <children nodenames="IdentifierType">
+            <attr_names>
+              <names>int</names>
+            </attr_names>
+          </children>
+        </children>
+      </children>
+    </children>
+    <children>body</children>
+    <children nodenames="Compound">
+      <attr_names></attr_names>
+      <children>block_items[0]</children>
+      <children nodenames="FuncCall">
+        <attr_names></attr_names>
+        <children>name</children>
+        <children nodenames="ID">
+          <attr_names name="printf" />
+        </children>
+        <children>args</children>
+        <children nodenames="ExprList">
+          <attr_names></attr_names>
+          <children>exprs[0]</children>
+          <children nodenames="Constant">
+            <attr_names type="string" value="&quot;hello, world&quot;" />
+          </children>
+        </children>
+      </children>
+    </children>
+  </children>
+</opt>

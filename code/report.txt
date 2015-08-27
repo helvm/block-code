@@ -1,0 +1,465 @@
+
+  
+  ext[0]
+  
+    
+    decl
+    
+      
+      
+      type
+      
+        
+        args
+        
+          
+          params[0]
+          
+            
+            
+            type
+            
+              
+              
+              type
+              
+                
+                  double
+                
+              
+            
+          
+        
+        type
+        
+          
+          
+          type
+          
+            
+              double
+            
+          
+        
+      
+    
+    body
+    
+      
+      block_items[0]
+      
+        
+        expr
+        
+          
+          left
+          
+            
+            name
+            
+              
+            
+            args
+            
+              
+              exprs[0]
+              
+                
+                name
+                
+                  
+                
+                args
+                
+                  
+                  exprs[0]
+                  
+                    
+                  
+                
+              
+            
+          
+          right
+          
+            
+            left
+            
+              
+            
+            right
+            
+              
+              name
+              
+                
+              
+              args
+              
+                
+                exprs[0]
+                
+                  
+                
+                exprs[1]
+                
+                  
+                
+              
+            
+          
+        
+      
+    
+  
+  ext[1]
+  
+    
+    decl
+    
+      
+      
+      type
+      
+        
+        args
+        
+          
+          params[0]
+          
+            
+            
+            type
+            
+              
+              
+              type
+              
+                
+                  int
+                
+              
+            
+          
+          params[1]
+          
+            
+            
+            type
+            
+              
+              
+              type
+              
+                
+                
+                type
+                
+                  
+                  
+                  type
+                  
+                    
+                      char
+                    
+                  
+                
+              
+            
+          
+        
+        type
+        
+          
+          
+          type
+          
+            
+              int
+            
+          
+        
+      
+    
+    body
+    
+      
+      block_items[0]
+      
+        
+        
+        type
+        
+          
+          
+          type
+          
+            
+            
+            type
+            
+              
+                double
+              
+            
+          
+          dim
+          
+            
+          
+        
+      
+      block_items[1]
+      
+        
+        
+        type
+        
+          
+          
+          type
+          
+            
+              double
+            
+          
+        
+      
+      block_items[2]
+      
+        
+        
+        type
+        
+          
+          
+          type
+          
+            
+              int
+            
+          
+        
+      
+      block_items[3]
+      
+        
+        init
+        
+          
+          lvalue
+          
+            
+          
+          rvalue
+          
+            
+          
+        
+        cond
+        
+          
+          left
+          
+            
+          
+          right
+          
+            
+          
+        
+        next
+        
+          
+          expr
+          
+            
+          
+        
+        stmt
+        
+          
+          block_items[0]
+          
+            
+            name
+            
+              
+            
+            args
+            
+              
+              exprs[0]
+              
+                
+              
+              exprs[1]
+              
+                
+                expr
+                
+                  
+                  name
+                  
+                    
+                  
+                  subscript
+                  
+                    
+                  
+                
+              
+            
+          
+        
+      
+      block_items[4]
+      
+        
+        init
+        
+          
+          lvalue
+          
+            
+          
+          rvalue
+          
+            
+          
+        
+        cond
+        
+          
+          left
+          
+            
+          
+          right
+          
+            
+          
+        
+        next
+        
+          
+          expr
+          
+            
+          
+        
+        stmt
+        
+          
+          block_items[0]
+          
+            
+            lvalue
+            
+              
+            
+            rvalue
+            
+              
+              name
+              
+                
+              
+              args
+              
+                
+                exprs[0]
+                
+                  
+                  name
+                  
+                    
+                  
+                  subscript
+                  
+                    
+                  
+                
+              
+            
+          
+          block_items[1]
+          
+            
+            cond
+            
+              
+              left
+              
+                
+              
+              right
+              
+                
+              
+            
+            iftrue
+            
+              
+              block_items[0]
+              
+                
+                name
+                
+                  
+                
+                args
+                
+                  
+                  exprs[0]
+                  
+                    
+                  
+                  exprs[1]
+                  
+                    
+                  
+                
+              
+            
+            iffalse
+            
+              
+              block_items[0]
+              
+                
+                name
+                
+                  
+                
+                args
+                
+                  
+                  exprs[0]
+                  
+                    
+                  
+                  exprs[1]
+                  
+                    
+                  
+                  exprs[2]
+                  
+                    
+                  
+                
+              
+            
+          
+        
+      
+      block_items[5]
+      
+        
+        expr
+        
+          
+        
+      
+    
+  
