@@ -94,7 +94,7 @@ def toValue(self):
             children_dict[child_key] = value
 
     if children_dict:
-        node_dict["children"] = children_dict
+        node_dict["props"] = children_dict
 
     if children_list:
         node_dict["list"] = children_list

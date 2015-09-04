@@ -8,6 +8,7 @@ use utf8;
 
 use JSON::Parse 'json_file_to_perl';
 use Data::Dumper;
+use Node;
 use VisitorStmt;
 
 sub block_code
@@ -18,6 +19,8 @@ sub block_code
     my $data = json_file_to_perl ($path.'.js');
 
     dump_to_file ($name, $data);
+
+    my $tree = Node->new ($data);
 
     my $visitor = VisitorStmt->new();
     #$visitor->open_file ($path . '.tcl');
@@ -36,5 +39,5 @@ sub dump_to_file
 }
 
 block_code('hw');
-#block_code('tpk');
+block_code('tpk');
 

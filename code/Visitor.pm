@@ -2,6 +2,8 @@ package Visitor;
 
 use Spiffy -Base;
 
+use Node;
+
 use Log::Log4perl qw(:easy);
     Log::Log4perl->easy_init($DEBUG);
 
@@ -34,14 +36,18 @@ sub visit
     my $name = shift @_;
     $logger->debug ('visit name -> ' . $name) if $name;
 
-    #$logger->debug ('visit node -> ' . $node) if $node;
+    $logger->debug ('visit node -> ' . $node) if $node;
 
     my $class_name = $node->{'class_name'};
 
+
+    #my $class_name = $node->class_name;
+
+    if ($class_name) {
     my $sub_name = 'visit_' . $class_name;
     $logger->debug ('visit sub_name -> ' . $sub_name);
     $self->$sub_name ($node);
-
+    }
 }
 
 sub visit_Node
