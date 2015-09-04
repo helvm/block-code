@@ -1,5 +1,3 @@
-
-
 double f (double x) {
     return (sqrt(fabs(x)) + 5.0*pow(x,3.0));
 }
