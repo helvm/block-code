@@ -27,74 +27,34 @@ sub puts
 {
     my $s = shift;
     my $fh = $self->fh();
-    print $fh $s;
+    print $fh $s, "\n";
 }
 
-sub visit
-{
-    my $node = shift @_;
-    my $name = shift @_;
-    $logger->debug ('visit name -> ' . $name) if $name;
 
-    $logger->debug ('visit node -> ' . $node) if $node;
-
-    my $class_name = $node->{'class_name'};
-
-
-    #my $class_name = $node->class_name;
-
-    if ($class_name) {
-    my $sub_name = 'visit_' . $class_name;
-    $logger->debug ('visit sub_name -> ' . $sub_name);
-    $self->$sub_name ($node);
-    }
-}
 
 sub visit_Node
 {
     my $node = shift @_;
 
-    my $class_name = $node->{'class_name'};
+    my $class_name = $node->class_name;
 
-    my $attrs = $node->{'attrs'};
+    my $attrs = $node->attrs;
 
-    my $children = $node->{'children'};
+    my $props = $node->props;
 
-    my $child_key = [keys %$children];
+    my $child_key = [keys %$props];
 
-    my $list = $node->{'list'};
+    my $list = $node->list;
 
     if (@$child_key or $list)
     {
-        $self->visit_block($node, $class_name, [keys %$attrs], [keys %$children]);
+        $self->visit_block($node, $class_name, [keys %$attrs], [keys %$props]);
     }
     else
     {
-        $self->visit_leaf($node, $class_name, [keys %$attrs], [keys %$children]);
+        $self->visit_leaf($node, $class_name, [keys %$attrs], [keys %$props]);
     }
 
-}
-
-sub visit_Node0
-{
-    my $node = shift @_;
-
-    my $attrs = $node->{'attrs'};
-    if (0 and $attrs)
-    {
-        $logger->debug ('visit_Node attrs length -> ' . (keys %$attrs));
-        $self->puts($attrs->{$_} .' ') foreach keys %$attrs;
-        $self->puts("\n");
-    }
-
-    my $children = $node->{'children'};
-    my $list = $node->{'list'};
-
-    if ($children or $list)
-    {
-        $logger->debug ('visit_Node children length -> ' . (keys %$children));
-        $self->visit ($children->{$_}, $_) foreach keys %$children;
-    }
 }
 
 sub visit_block
@@ -104,11 +64,11 @@ sub visit_block
     my $attr_keys = shift;
     my $child_keys = shift;
 
-    my $attrs = $node->{'attrs'};
-    my $children = $node->{'children'};
-    my $list = $node->{'list'};
+    my $attrs = $node->attrs;
+    my $props = $node->props;
+    my $list = $node->list;
 
-    $self->puts($name. "\n");
+    $self->puts($name);
 
     if ($attr_keys)
     {
@@ -121,17 +81,17 @@ sub visit_block
         $self->puts("\n");
     }
 
-    $self->visit($children->{$_}) for @$child_keys;
+    $props->{$_}->accept($self) for @$child_keys;
 
     if ($list)
     {
-        $self->puts('BLOCK'. "\n");
-        $self->visit($_) for @$list;
-        $self->puts('END_'.'BLOCK'. "\n");
+        $self->puts('BLOCK');
+        $_->accept($self) for @$list;
+        $self->puts('END_'.'BLOCK');
     }
 
 
-    $self->puts('END_'.$name. "\n");
+    $self->puts('END_'.$name);
 }
 
 
@@ -141,7 +101,7 @@ sub visit_leaf
     my $name = shift;
     my $attr_keys = shift;
 
-    my $attrs = $node->{'attrs'};
+    my $attrs = $node->attrs;
 
     $self->puts($name. ' ');
     if ($attr_keys)
@@ -153,7 +113,7 @@ sub visit_leaf
             $self->puts($attrs->{$_} .' ');
         }
     }
-    $self->puts("\n");
+    $self->puts('');
 
 
 
@@ -171,11 +131,11 @@ sub visit_attrs
 
 }
 
-sub visit_children
+sub visit_props
 {
     my $node = shift;
-    my $children = $node->{'children'};
-    $self->visit($children->{$_}) foreach keys %$children;
+    my $props = $node->props;
+    $props->{$_}->accept($self) foreach keys %$props;
 
 }
 

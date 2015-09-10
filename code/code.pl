@@ -13,6 +13,15 @@ use VisitorStmt;
 
 sub block_code
 {
+    eval {
+        translate (@_);
+    };
+    warn $@ if $@;
+
+}
+
+sub translate
+{
     my $name = shift;
     my $path = '../js/' . $name;
 
@@ -23,9 +32,7 @@ sub block_code
     my $tree = Node->new ($data);
 
     my $visitor = VisitorStmt->new();
-    #$visitor->open_file ($path . '.tcl');
-    #$visitor->visit ($data);
-    #$visitor->close_file ();
+
     $visitor->stmt($data, $path . '.tcl');
 }
 

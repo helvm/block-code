@@ -1,3 +1,4 @@
+#!/usr/bin/python
 
 from __future__ import print_function
 import sys
@@ -77,7 +78,7 @@ def toValue(self):
     if class_name == 'IdType':
         attrs = convert_type_names(attrs)
 
-    if attrs:
+    if attrs or True:
         node_dict["attrs"]  = attrs
 
     children_dict = {}
@@ -93,10 +94,10 @@ def toValue(self):
         else:
             children_dict[child_key] = value
 
-    if children_dict:
+    if children_dict or True:
         node_dict["props"] = children_dict
 
-    if children_list:
+    if children_list or True:
         node_dict["list"] = children_list
 
     return node_dict

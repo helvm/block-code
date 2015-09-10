@@ -8,7 +8,7 @@ use Visitor -Base;
 sub visit_Decl
 {
     #$self->visit_Node(@_);
-    $self->visit_children(@_);
+    $self->visit_props(@_);
 }
 
 
@@ -28,11 +28,10 @@ sub visit_TypeDecl
     #$self->visit_Node(@_);
     my $node = shift;
 
-    my $type = $node->{'children'}->{'type'};
-    $self->visit($type);
+    $node->prop_type->accept($self);
 
-    my $declname = $node->{'attrs'}->{'declname'};
-    $self->puts($declname. "\n");
+    my $declname = $node->attr_declname;
+    $self->puts($declname);
 
 }
 
@@ -40,8 +39,8 @@ sub visit_IdType
 {
     #$self->visit_Node(@_);
     my $node = shift;
-    my $name = $node->{'attrs'}->{'name'};
-    $self->puts($name. ' ');
+    my $name = $node->attr_name;
+    $self->puts($name);
 }
 
 sub visit_Compound

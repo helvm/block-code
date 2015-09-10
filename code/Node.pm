@@ -3,7 +3,7 @@ package Node;
 use strict;
 use warnings;
 
-
+use Devel::StackTrace;
 
 use Log::Log4perl qw(:easy);
     Log::Log4perl->easy_init($ERROR);
@@ -23,7 +23,6 @@ sub new
     my $class_name = $self->{'class_name'};
 
     $logger->debug ("new class_name => $class_name");
-
 
     my $props = $self->props();
     if ($props) {
@@ -45,14 +44,44 @@ sub new
     return $self;
 }
 
+
+
+sub accept
+{
+    my $self = shift;
+    my $visitor = shift;
+    my $name = shift;
+    $logger->debug ('accept name -> ' . $name) if $name;
+
+    my $class_name = $self->class_name;
+
+    #my $class_name = $node->class_name;
+
+    if ($class_name) {
+        my $method = 'visit_' . $class_name;
+        $logger->debug ('accept method -> ' . $method);
+        if ($visitor->can($method))
+        {
+            $visitor->$method ($self);
+        }
+        else
+        {
+            my $trace = Devel::StackTrace->new();
+            while ( my $frame = $trace->prev_frame() ) {
+                $logger->error ("Sub: ". $frame->subroutine());
+            }
+        }
+    }
+}
+
 sub attr
 {
     my $self = shift;
     my $key = shift;
     $logger->debug ("attr key => $key");
-
-    $self->attrs()->{$key}= shift if (@_);
-    return $self->attrs()->{$key};
+    my $attrs = $self->attrs();
+    $attrs->{$key} = shift if (@_);
+    return $attrs->{$key};
 }
 
 sub prop
@@ -60,13 +89,10 @@ sub prop
     my $self = shift;
     my $key = shift;
     $logger->debug ("prop key => $key");
-
-    $self->props()->{$key} = shift if (@_);
-    return $self->props()->{$key};
+    my $props = $self->props();
+    $props->{$key} = shift if (@_);
+    return $props->{$key};
 }
-
-
-
 
 our $AUTOLOAD;
 sub AUTOLOAD
@@ -76,11 +102,23 @@ sub AUTOLOAD
 
     $logger->debug ("AUTOLOAD key => $key");
 
-    my $attr = $key =~/attr_(\s+)/;
+    return $self->attr($1) if ( $key =~/attr_(\w+)/);
 
-    #return $self->attr()
+    return $self->prop($1) if ( $key =~/prop_(\w+)/);
 
-    my $prop = $key =~/prop_(\s+)/;
+    #exists $self->{$key} or die "$key exists in $self";
+    if (not exists $self->{$key}) {
+        my $class_name = $self->{'classname'};
+        $logger->error("$key not exists in $self");
+        $logger->error($class_name);
+        $logger->error($self->{$key});
+        my $trace = Devel::StackTrace->new();
+        while ( my $frame = $trace->prev_frame() )
+        {
+            $logger->error ("Sub: ". $frame->subroutine());
+        }
+        die;
+    }
 
     $self->{$key} = shift if (@_);
 
