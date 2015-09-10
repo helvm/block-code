@@ -1,8 +1,6 @@
 int main (char p, char p1)
 {
-    char m;
-
-    m +=p;
-    char m1;
+    for (p = 0; p < p1; ++p)
+        p += p1;
 
 }
