@@ -15,7 +15,10 @@ sub visit_Decl
 
 sub visit_ParamList
 {
-    $self->visit_Node(@_);
+    #$self->visit_Node(@_);
+
+    $self->visit_list();
+
 }
 
 sub visit_Typename

@@ -1,0 +1,1366 @@
+Warnings:
+---------
+64 shift/reduce conflicts
+
+Conflicts:
+----------
+Conflict in state 82 between rule 41 and token ASSIGN resolved as reduce.
+Conflict in state 82 between rule 41 and token ELSE resolved as reduce.
+Conflict in state 82 between rule 41 and token XOR resolved as reduce.
+Conflict in state 82 between rule 41 and token GE resolved as reduce.
+Conflict in state 82 between rule 41 and token EQ resolved as reduce.
+Conflict in state 82 between rule 41 and token GT resolved as reduce.
+Conflict in state 82 between rule 41 and token ASSIGN_DIV resolved as reduce.
+Conflict in state 82 between rule 41 and token ASSIGN_ADD resolved as reduce.
+Conflict in state 82 between rule 41 and token ASSIGN_XAND resolved as reduce.
+Conflict in state 82 between rule 41 and token CAST resolved as reduce.
+Conflict in state 82 between rule 41 and token SHL resolved as reduce.
+Conflict in state 82 between rule 41 and token LE resolved as reduce.
+Conflict in state 82 between rule 41 and token SUB resolved as reduce.
+Conflict in state 82 between rule 41 and token DIV resolved as reduce.
+Conflict in state 82 between rule 41 and token OR resolved as reduce.
+Conflict in state 82 between rule 41 and token SHR resolved as reduce.
+Conflict in state 82 between rule 41 and token AND resolved as reduce.
+Conflict in state 82 between rule 41 and token ASSIGN_MUL resolved as reduce.
+Conflict in state 82 between rule 41 and token ASSIGN_SUB resolved as reduce.
+Conflict in state 82 between rule 41 and token ALSO resolved as reduce.
+Conflict in state 82 between rule 41 and token ARRAY resolved as reduce.
+Conflict in state 82 between rule 41 and token LT resolved as reduce.
+Conflict in state 82 between rule 41 and token ADD resolved as reduce.
+Conflict in state 82 between rule 41 and token MOD resolved as reduce.
+Conflict in state 82 between rule 41 and token ASSIGN_OR resolved as reduce.
+Conflict in state 82 between rule 41 and token NE resolved as reduce.
+Conflict in state 82 between rule 41 and token ASSIGN_AND resolved as reduce.
+Conflict in state 82 between rule 41 and token ASSIGN_XOR resolved as reduce.
+Conflict in state 82 between rule 41 and token ASSIGN_MOD resolved as reduce.
+Conflict in state 82 between rule 41 and token MUL resolved as reduce.
+State 45 contains 1 shift/reduce conflict
+State 82 contains 1 shift/reduce conflict
+State 90 contains 31 shift/reduce conflicts
+State 91 contains 31 shift/reduce conflicts
+
+Rules:
+------
+0:	$start -> basic $end
+1:	basic -> block
+2:	block -> BEGIN list END
+3:	list -> decl_or_stmt EOL
+4:	list -> list decl_or_stmt EOL
+5:	decl_or_stmt -> decl
+6:	decl_or_stmt -> stmt
+7:	decl -> sub
+8:	decl -> var
+9:	sub -> label SUBPRO in_or_empty out_or_empty block
+10:	var -> label type expr
+11:	var -> label type
+12:	in_or_empty -> IN var_block
+13:	in_or_empty -> /* empty */
+14:	out_or_empty -> OUT var_block
+15:	out_or_empty -> /* empty */
+16:	var_block -> BEGIN var_list END
+17:	var_list -> var_list var
+18:	var_list -> var
+19:	stmt -> stmt_simple
+20:	stmt -> compound
+21:	stmt_simple -> ASSERTION expr
+22:	stmt_simple -> ASSIGMENT assignment
+23:	stmt_simple -> GOSUB TOKEN tupla expr
+24:	stmt_simple -> GOBEGIN TOKEN expr
+25:	stmt_simple -> GOEND TOKEN expr
+26:	compound -> label block
+27:	compound -> block
+28:	assignment -> expr assign expr
+29:	assign -> ASSIGN
+30:	assign -> ASSIGN_ADD
+31:	assign -> ASSIGN_SUB
+32:	assign -> ASSIGN_MUL
+33:	assign -> ASSIGN_DIV
+34:	assign -> ASSIGN_MOD
+35:	assign -> ASSIGN_AND
+36:	assign -> ASSIGN_OR
+37:	assign -> ASSIGN_XOR
+38:	assign -> ASSIGN_XAND
+39:	expr -> assignment
+40:	expr -> expr binary_operator expr
+41:	expr -> unary_operator expr
+42:	expr -> '(' expr ')'
+43:	expr -> NUMBER
+44:	expr -> TOKEN
+45:	binary_operator -> binary_operator_math
+46:	binary_operator -> EQ
+47:	binary_operator -> NE
+48:	binary_operator -> LT
+49:	binary_operator -> GT
+50:	binary_operator -> LE
+51:	binary_operator -> GE
+52:	binary_operator -> ALSO
+53:	binary_operator -> ELSE
+54:	binary_operator -> SHR
+55:	binary_operator -> SHL
+56:	binary_operator -> ARRAY
+57:	binary_operator -> CAST
+58:	binary_operator_math -> ADD
+59:	binary_operator_math -> SUB
+60:	binary_operator_math -> MUL
+61:	binary_operator_math -> DIV
+62:	binary_operator_math -> MOD
+63:	binary_operator_math -> AND
+64:	binary_operator_math -> OR
+65:	binary_operator_math -> XOR
+66:	binary_operator_math -> XAND
+67:	unary_operator -> SIZEOF
+68:	unary_operator -> PTR
+69:	unary_operator -> REF
+70:	unary_operator -> ADD
+71:	unary_operator -> SUB
+72:	unary_operator -> NEG
+73:	unary_operator -> NOT
+74:	label -> TOKEN ':'
+
+States:
+-------
+State 0:
+
+	$start -> . basic $end	(Rule 0)
+
+	BEGIN	shift, and go to state 3
+
+	basic	go to state 2
+	block	go to state 1
+
+State 1:
+
+	basic -> block .	(Rule 1)
+
+	$default	reduce using rule 1 (basic)
+
+State 2:
+
+	$start -> basic . $end	(Rule 0)
+
+	$end	shift, and go to state 4
+
+State 3:
+
+	block -> BEGIN . list END	(Rule 2)
+
+	ASSERTION	shift, and go to state 11
+	ASSIGMENT	shift, and go to state 14
+	BEGIN	shift, and go to state 3
+	GOBEGIN	shift, and go to state 13
+	GOEND	shift, and go to state 10
+	GOSUB	shift, and go to state 6
+	TOKEN	shift, and go to state 8
+
+	compound	go to state 5
+	decl	go to state 15
+	sub	go to state 16
+	stmt_simple	go to state 7
+	list	go to state 17
+	label	go to state 18
+	stmt	go to state 9
+	decl_or_stmt	go to state 12
+	block	go to state 19
+	var	go to state 20
+
+State 4:
+
+	$start -> basic $end .	(Rule 0)
+
+	$default	accept
+
+State 5:
+
+	stmt -> compound .	(Rule 20)
+
+	$default	reduce using rule 20 (stmt)
+
+State 6:
+
+	stmt_simple -> GOSUB . TOKEN tupla expr	(Rule 23)
+
+	TOKEN	shift, and go to state 21
+
+State 7:
+
+	stmt -> stmt_simple .	(Rule 19)
+
+	$default	reduce using rule 19 (stmt)
+
+State 8:
+
+	label -> TOKEN . ':'	(Rule 74)
+
+	':'	shift, and go to state 22
+
+State 9:
+
+	decl_or_stmt -> stmt .	(Rule 6)
+
+	$default	reduce using rule 6 (decl_or_stmt)
+
+State 10:
+
+	stmt_simple -> GOEND . TOKEN expr	(Rule 25)
+
+	TOKEN	shift, and go to state 23
+
+State 11:
+
+	stmt_simple -> ASSERTION . expr	(Rule 21)
+
+	'('	shift, and go to state 32
+	ADD	shift, and go to state 30
+	NEG	shift, and go to state 34
+	NOT	shift, and go to state 36
+	NUMBER	shift, and go to state 28
+	PTR	shift, and go to state 29
+	REF	shift, and go to state 25
+	SIZEOF	shift, and go to state 27
+	SUB	shift, and go to state 35
+	TOKEN	shift, and go to state 26
+
+	expr	go to state 24
+	assignment	go to state 33
+	unary_operator	go to state 31
+
+State 12:
+
+	list -> decl_or_stmt . EOL	(Rule 3)
+
+	EOL	shift, and go to state 37
+
+State 13:
+
+	stmt_simple -> GOBEGIN . TOKEN expr	(Rule 24)
+
+	TOKEN	shift, and go to state 38
+
+State 14:
+
+	stmt_simple -> ASSIGMENT . assignment	(Rule 22)
+
+	'('	shift, and go to state 32
+	ADD	shift, and go to state 30
+	NEG	shift, and go to state 34
+	NOT	shift, and go to state 36
+	NUMBER	shift, and go to state 28
+	PTR	shift, and go to state 29
+	REF	shift, and go to state 25
+	SIZEOF	shift, and go to state 27
+	SUB	shift, and go to state 35
+	TOKEN	shift, and go to state 26
+
+	expr	go to state 40
+	unary_operator	go to state 31
+	assignment	go to state 39
+
+State 15:
+
+	decl_or_stmt -> decl .	(Rule 5)
+
+	$default	reduce using rule 5 (decl_or_stmt)
+
+State 16:
+
+	decl -> sub .	(Rule 7)
+
+	$default	reduce using rule 7 (decl)
+
+State 17:
+
+	block -> BEGIN list . END	(Rule 2)
+	list -> list . decl_or_stmt EOL	(Rule 4)
+
+	ASSERTION	shift, and go to state 11
+	ASSIGMENT	shift, and go to state 14
+	BEGIN	shift, and go to state 3
+	END	shift, and go to state 42
+	GOBEGIN	shift, and go to state 13
+	GOEND	shift, and go to state 10
+	GOSUB	shift, and go to state 6
+	TOKEN	shift, and go to state 8
+
+	var	go to state 20
+	decl_or_stmt	go to state 41
+	stmt	go to state 9
+	block	go to state 19
+	stmt_simple	go to state 7
+	label	go to state 18
+	compound	go to state 5
+	decl	go to state 15
+	sub	go to state 16
+
+State 18:
+
+	sub -> label . SUBPRO in_or_empty out_or_empty block	(Rule 9)
+	var -> label . type expr	(Rule 10)
+	var -> label . type	(Rule 11)
+	compound -> label . block	(Rule 26)
+
+	BEGIN	shift, and go to state 3
+	SUBPRO	shift, and go to state 44
+	type	shift, and go to state 45
+
+	block	go to state 43
+
+State 19:
+
+	compound -> block .	(Rule 27)
+
+	$default	reduce using rule 27 (compound)
+
+State 20:
+
+	decl -> var .	(Rule 8)
+
+	$default	reduce using rule 8 (decl)
+
+State 21:
+
+	stmt_simple -> GOSUB TOKEN . tupla expr	(Rule 23)
+
+	tupla	shift, and go to state 46
+
+State 22:
+
+	label -> TOKEN ':' .	(Rule 74)
+
+	$default	reduce using rule 74 (label)
+
+State 23:
+
+	stmt_simple -> GOEND TOKEN . expr	(Rule 25)
+
+	'('	shift, and go to state 32
+	ADD	shift, and go to state 30
+	NEG	shift, and go to state 34
+	NOT	shift, and go to state 36
+	NUMBER	shift, and go to state 28
+	PTR	shift, and go to state 29
+	REF	shift, and go to state 25
+	SIZEOF	shift, and go to state 27
+	SUB	shift, and go to state 35
+	TOKEN	shift, and go to state 26
+
+	assignment	go to state 33
+	unary_operator	go to state 31
+	expr	go to state 47
+
+State 24:
+
+	stmt_simple -> ASSERTION expr .	(Rule 21)
+	assignment -> expr . assign expr	(Rule 28)
+	expr -> expr . binary_operator expr	(Rule 40)
+
+	ADD	shift, and go to state 49
+	ALSO	shift, and go to state 63
+	AND	shift, and go to state 59
+	ARRAY	shift, and go to state 64
+	ASSIGN	shift, and go to state 78
+	ASSIGN_ADD	shift, and go to state 66
+	ASSIGN_AND	shift, and go to state 55
+	ASSIGN_DIV	shift, and go to state 79
+	ASSIGN_MOD	shift, and go to state 53
+	ASSIGN_MUL	shift, and go to state 57
+	ASSIGN_OR	shift, and go to state 51
+	ASSIGN_SUB	shift, and go to state 56
+	ASSIGN_XAND	shift, and go to state 65
+	ASSIGN_XOR	shift, and go to state 52
+	CAST	shift, and go to state 67
+	DIV	shift, and go to state 74
+	ELSE	shift, and go to state 76
+	EQ	shift, and go to state 81
+	GE	shift, and go to state 75
+	GT	shift, and go to state 80
+	LE	shift, and go to state 72
+	LT	shift, and go to state 60
+	MOD	shift, and go to state 50
+	MUL	shift, and go to state 54
+	NE	shift, and go to state 48
+	OR	shift, and go to state 69
+	SHL	shift, and go to state 70
+	SHR	shift, and go to state 58
+	SUB	shift, and go to state 71
+	XAND	shift, and go to state 73
+	XOR	shift, and go to state 77
+
+	$default	reduce using rule 21 (stmt_simple)
+
+	assign	go to state 68
+	binary_operator	go to state 61
+	binary_operator_math	go to state 62
+
+State 25:
+
+	unary_operator -> REF .	(Rule 69)
+
+	$default	reduce using rule 69 (unary_operator)
+
+State 26:
+
+	expr -> TOKEN .	(Rule 44)
+
+	$default	reduce using rule 44 (expr)
+
+State 27:
+
+	unary_operator -> SIZEOF .	(Rule 67)
+
+	$default	reduce using rule 67 (unary_operator)
+
+State 28:
+
+	expr -> NUMBER .	(Rule 43)
+
+	$default	reduce using rule 43 (expr)
+
+State 29:
+
+	unary_operator -> PTR .	(Rule 68)
+
+	$default	reduce using rule 68 (unary_operator)
+
+State 30:
+
+	unary_operator -> ADD .	(Rule 70)
+
+	$default	reduce using rule 70 (unary_operator)
+
+State 31:
+
+	expr -> unary_operator . expr	(Rule 41)
+
+	'('	shift, and go to state 32
+	ADD	shift, and go to state 30
+	NEG	shift, and go to state 34
+	NOT	shift, and go to state 36
+	NUMBER	shift, and go to state 28
+	PTR	shift, and go to state 29
+	REF	shift, and go to state 25
+	SIZEOF	shift, and go to state 27
+	SUB	shift, and go to state 35
+	TOKEN	shift, and go to state 26
+
+	unary_operator	go to state 31
+	assignment	go to state 33
+	expr	go to state 82
+
+State 32:
+
+	expr -> '(' . expr ')'	(Rule 42)
+
+	'('	shift, and go to state 32
+	ADD	shift, and go to state 30
+	NEG	shift, and go to state 34
+	NOT	shift, and go to state 36
+	NUMBER	shift, and go to state 28
+	PTR	shift, and go to state 29
+	REF	shift, and go to state 25
+	SIZEOF	shift, and go to state 27
+	SUB	shift, and go to state 35
+	TOKEN	shift, and go to state 26
+
+	expr	go to state 83
+	unary_operator	go to state 31
+	assignment	go to state 33
+
+State 33:
+
+	expr -> assignment .	(Rule 39)
+
+	$default	reduce using rule 39 (expr)
+
+State 34:
+
+	unary_operator -> NEG .	(Rule 72)
+
+	$default	reduce using rule 72 (unary_operator)
+
+State 35:
+
+	unary_operator -> SUB .	(Rule 71)
+
+	$default	reduce using rule 71 (unary_operator)
+
+State 36:
+
+	unary_operator -> NOT .	(Rule 73)
+
+	$default	reduce using rule 73 (unary_operator)
+
+State 37:
+
+	list -> decl_or_stmt EOL .	(Rule 3)
+
+	$default	reduce using rule 3 (list)
+
+State 38:
+
+	stmt_simple -> GOBEGIN TOKEN . expr	(Rule 24)
+
+	'('	shift, and go to state 32
+	ADD	shift, and go to state 30
+	NEG	shift, and go to state 34
+	NOT	shift, and go to state 36
+	NUMBER	shift, and go to state 28
+	PTR	shift, and go to state 29
+	REF	shift, and go to state 25
+	SIZEOF	shift, and go to state 27
+	SUB	shift, and go to state 35
+	TOKEN	shift, and go to state 26
+
+	assignment	go to state 33
+	unary_operator	go to state 31
+	expr	go to state 84
+
+State 39:
+
+	stmt_simple -> ASSIGMENT assignment .	(Rule 22)
+	expr -> assignment .	(Rule 39)
+
+	EOL	reduce using rule 22 (stmt_simple)
+	$default	reduce using rule 39 (expr)
+
+State 40:
+
+	assignment -> expr . assign expr	(Rule 28)
+	expr -> expr . binary_operator expr	(Rule 40)
+
+	ADD	shift, and go to state 49
+	ALSO	shift, and go to state 63
+	AND	shift, and go to state 59
+	ARRAY	shift, and go to state 64
+	ASSIGN	shift, and go to state 78
+	ASSIGN_ADD	shift, and go to state 66
+	ASSIGN_AND	shift, and go to state 55
+	ASSIGN_DIV	shift, and go to state 79
+	ASSIGN_MOD	shift, and go to state 53
+	ASSIGN_MUL	shift, and go to state 57
+	ASSIGN_OR	shift, and go to state 51
+	ASSIGN_SUB	shift, and go to state 56
+	ASSIGN_XAND	shift, and go to state 65
+	ASSIGN_XOR	shift, and go to state 52
+	CAST	shift, and go to state 67
+	DIV	shift, and go to state 74
+	ELSE	shift, and go to state 76
+	EQ	shift, and go to state 81
+	GE	shift, and go to state 75
+	GT	shift, and go to state 80
+	LE	shift, and go to state 72
+	LT	shift, and go to state 60
+	MOD	shift, and go to state 50
+	MUL	shift, and go to state 54
+	NE	shift, and go to state 48
+	OR	shift, and go to state 69
+	SHL	shift, and go to state 70
+	SHR	shift, and go to state 58
+	SUB	shift, and go to state 71
+	XAND	shift, and go to state 73
+	XOR	shift, and go to state 77
+
+	assign	go to state 68
+	binary_operator_math	go to state 62
+	binary_operator	go to state 61
+
+State 41:
+
+	list -> list decl_or_stmt . EOL	(Rule 4)
+
+	EOL	shift, and go to state 85
+
+State 42:
+
+	block -> BEGIN list END .	(Rule 2)
+
+	$default	reduce using rule 2 (block)
+
+State 43:
+
+	compound -> label block .	(Rule 26)
+
+	$default	reduce using rule 26 (compound)
+
+State 44:
+
+	sub -> label SUBPRO . in_or_empty out_or_empty block	(Rule 9)
+
+	IN	shift, and go to state 86
+
+	$default	reduce using rule 13 (in_or_empty)
+
+	in_or_empty	go to state 87
+
+State 45:
+
+	var -> label type . expr	(Rule 10)
+	var -> label type .	(Rule 11)
+
+	'('	shift, and go to state 32
+	ADD	shift, and go to state 30
+	NEG	shift, and go to state 34
+	NOT	shift, and go to state 36
+	NUMBER	shift, and go to state 28
+	PTR	shift, and go to state 29
+	REF	shift, and go to state 25
+	SIZEOF	shift, and go to state 27
+	SUB	shift, and go to state 35
+	TOKEN	shift, and go to state 26
+
+	TOKEN	[reduce using rule 11 (var)]
+	$default	reduce using rule 11 (var)
+
+	expr	go to state 88
+	assignment	go to state 33
+	unary_operator	go to state 31
+
+State 46:
+
+	stmt_simple -> GOSUB TOKEN tupla . expr	(Rule 23)
+
+	'('	shift, and go to state 32
+	ADD	shift, and go to state 30
+	NEG	shift, and go to state 34
+	NOT	shift, and go to state 36
+	NUMBER	shift, and go to state 28
+	PTR	shift, and go to state 29
+	REF	shift, and go to state 25
+	SIZEOF	shift, and go to state 27
+	SUB	shift, and go to state 35
+	TOKEN	shift, and go to state 26
+
+	unary_operator	go to state 31
+	assignment	go to state 33
+	expr	go to state 89
+
+State 47:
+
+	stmt_simple -> GOEND TOKEN expr .	(Rule 25)
+	assignment -> expr . assign expr	(Rule 28)
+	expr -> expr . binary_operator expr	(Rule 40)
+
+	ADD	shift, and go to state 49
+	ALSO	shift, and go to state 63
+	AND	shift, and go to state 59
+	ARRAY	shift, and go to state 64
+	ASSIGN	shift, and go to state 78
+	ASSIGN_ADD	shift, and go to state 66
+	ASSIGN_AND	shift, and go to state 55
+	ASSIGN_DIV	shift, and go to state 79
+	ASSIGN_MOD	shift, and go to state 53
+	ASSIGN_MUL	shift, and go to state 57
+	ASSIGN_OR	shift, and go to state 51
+	ASSIGN_SUB	shift, and go to state 56
+	ASSIGN_XAND	shift, and go to state 65
+	ASSIGN_XOR	shift, and go to state 52
+	CAST	shift, and go to state 67
+	DIV	shift, and go to state 74
+	ELSE	shift, and go to state 76
+	EQ	shift, and go to state 81
+	GE	shift, and go to state 75
+	GT	shift, and go to state 80
+	LE	shift, and go to state 72
+	LT	shift, and go to state 60
+	MOD	shift, and go to state 50
+	MUL	shift, and go to state 54
+	NE	shift, and go to state 48
+	OR	shift, and go to state 69
+	SHL	shift, and go to state 70
+	SHR	shift, and go to state 58
+	SUB	shift, and go to state 71
+	XAND	shift, and go to state 73
+	XOR	shift, and go to state 77
+
+	$default	reduce using rule 25 (stmt_simple)
+
+	binary_operator	go to state 61
+	binary_operator_math	go to state 62
+	assign	go to state 68
+
+State 48:
+
+	binary_operator -> NE .	(Rule 47)
+
+	$default	reduce using rule 47 (binary_operator)
+
+State 49:
+
+	binary_operator_math -> ADD .	(Rule 58)
+
+	$default	reduce using rule 58 (binary_operator_math)
+
+State 50:
+
+	binary_operator_math -> MOD .	(Rule 62)
+
+	$default	reduce using rule 62 (binary_operator_math)
+
+State 51:
+
+	assign -> ASSIGN_OR .	(Rule 36)
+
+	$default	reduce using rule 36 (assign)
+
+State 52:
+
+	assign -> ASSIGN_XOR .	(Rule 37)
+
+	$default	reduce using rule 37 (assign)
+
+State 53:
+
+	assign -> ASSIGN_MOD .	(Rule 34)
+
+	$default	reduce using rule 34 (assign)
+
+State 54:
+
+	binary_operator_math -> MUL .	(Rule 60)
+
+	$default	reduce using rule 60 (binary_operator_math)
+
+State 55:
+
+	assign -> ASSIGN_AND .	(Rule 35)
+
+	$default	reduce using rule 35 (assign)
+
+State 56:
+
+	assign -> ASSIGN_SUB .	(Rule 31)
+
+	$default	reduce using rule 31 (assign)
+
+State 57:
+
+	assign -> ASSIGN_MUL .	(Rule 32)
+
+	$default	reduce using rule 32 (assign)
+
+State 58:
+
+	binary_operator -> SHR .	(Rule 54)
+
+	$default	reduce using rule 54 (binary_operator)
+
+State 59:
+
+	binary_operator_math -> AND .	(Rule 63)
+
+	$default	reduce using rule 63 (binary_operator_math)
+
+State 60:
+
+	binary_operator -> LT .	(Rule 48)
+
+	$default	reduce using rule 48 (binary_operator)
+
+State 61:
+
+	expr -> expr binary_operator . expr	(Rule 40)
+
+	'('	shift, and go to state 32
+	ADD	shift, and go to state 30
+	NEG	shift, and go to state 34
+	NOT	shift, and go to state 36
+	NUMBER	shift, and go to state 28
+	PTR	shift, and go to state 29
+	REF	shift, and go to state 25
+	SIZEOF	shift, and go to state 27
+	SUB	shift, and go to state 35
+	TOKEN	shift, and go to state 26
+
+	assignment	go to state 33
+	unary_operator	go to state 31
+	expr	go to state 90
+
+State 62:
+
+	binary_operator -> binary_operator_math .	(Rule 45)
+
+	$default	reduce using rule 45 (binary_operator)
+
+State 63:
+
+	binary_operator -> ALSO .	(Rule 52)
+
+	$default	reduce using rule 52 (binary_operator)
+
+State 64:
+
+	binary_operator -> ARRAY .	(Rule 56)
+
+	$default	reduce using rule 56 (binary_operator)
+
+State 65:
+
+	assign -> ASSIGN_XAND .	(Rule 38)
+
+	$default	reduce using rule 38 (assign)
+
+State 66:
+
+	assign -> ASSIGN_ADD .	(Rule 30)
+
+	$default	reduce using rule 30 (assign)
+
+State 67:
+
+	binary_operator -> CAST .	(Rule 57)
+
+	$default	reduce using rule 57 (binary_operator)
+
+State 68:
+
+	assignment -> expr assign . expr	(Rule 28)
+
+	'('	shift, and go to state 32
+	ADD	shift, and go to state 30
+	NEG	shift, and go to state 34
+	NOT	shift, and go to state 36
+	NUMBER	shift, and go to state 28
+	PTR	shift, and go to state 29
+	REF	shift, and go to state 25
+	SIZEOF	shift, and go to state 27
+	SUB	shift, and go to state 35
+	TOKEN	shift, and go to state 26
+
+	assignment	go to state 33
+	unary_operator	go to state 31
+	expr	go to state 91
+
+State 69:
+
+	binary_operator_math -> OR .	(Rule 64)
+
+	$default	reduce using rule 64 (binary_operator_math)
+
+State 70:
+
+	binary_operator -> SHL .	(Rule 55)
+
+	$default	reduce using rule 55 (binary_operator)
+
+State 71:
+
+	binary_operator_math -> SUB .	(Rule 59)
+
+	$default	reduce using rule 59 (binary_operator_math)
+
+State 72:
+
+	binary_operator -> LE .	(Rule 50)
+
+	$default	reduce using rule 50 (binary_operator)
+
+State 73:
+
+	binary_operator_math -> XAND .	(Rule 66)
+
+	$default	reduce using rule 66 (binary_operator_math)
+
+State 74:
+
+	binary_operator_math -> DIV .	(Rule 61)
+
+	$default	reduce using rule 61 (binary_operator_math)
+
+State 75:
+
+	binary_operator -> GE .	(Rule 51)
+
+	$default	reduce using rule 51 (binary_operator)
+
+State 76:
+
+	binary_operator -> ELSE .	(Rule 53)
+
+	$default	reduce using rule 53 (binary_operator)
+
+State 77:
+
+	binary_operator_math -> XOR .	(Rule 65)
+
+	$default	reduce using rule 65 (binary_operator_math)
+
+State 78:
+
+	assign -> ASSIGN .	(Rule 29)
+
+	$default	reduce using rule 29 (assign)
+
+State 79:
+
+	assign -> ASSIGN_DIV .	(Rule 33)
+
+	$default	reduce using rule 33 (assign)
+
+State 80:
+
+	binary_operator -> GT .	(Rule 49)
+
+	$default	reduce using rule 49 (binary_operator)
+
+State 81:
+
+	binary_operator -> EQ .	(Rule 46)
+
+	$default	reduce using rule 46 (binary_operator)
+
+State 82:
+
+	assignment -> expr . assign expr	(Rule 28)
+	expr -> expr . binary_operator expr	(Rule 40)
+	expr -> unary_operator expr .	(Rule 41)
+
+	XAND	shift, and go to state 73
+
+	XAND	[reduce using rule 41 (expr)]
+	$default	reduce using rule 41 (expr)
+
+	binary_operator_math	go to state 62
+	binary_operator	go to state 61
+	assign	go to state 68
+
+State 83:
+
+	assignment -> expr . assign expr	(Rule 28)
+	expr -> expr . binary_operator expr	(Rule 40)
+	expr -> '(' expr . ')'	(Rule 42)
+
+	')'	shift, and go to state 92
+	ADD	shift, and go to state 49
+	ALSO	shift, and go to state 63
+	AND	shift, and go to state 59
+	ARRAY	shift, and go to state 64
+	ASSIGN	shift, and go to state 78
+	ASSIGN_ADD	shift, and go to state 66
+	ASSIGN_AND	shift, and go to state 55
+	ASSIGN_DIV	shift, and go to state 79
+	ASSIGN_MOD	shift, and go to state 53
+	ASSIGN_MUL	shift, and go to state 57
+	ASSIGN_OR	shift, and go to state 51
+	ASSIGN_SUB	shift, and go to state 56
+	ASSIGN_XAND	shift, and go to state 65
+	ASSIGN_XOR	shift, and go to state 52
+	CAST	shift, and go to state 67
+	DIV	shift, and go to state 74
+	ELSE	shift, and go to state 76
+	EQ	shift, and go to state 81
+	GE	shift, and go to state 75
+	GT	shift, and go to state 80
+	LE	shift, and go to state 72
+	LT	shift, and go to state 60
+	MOD	shift, and go to state 50
+	MUL	shift, and go to state 54
+	NE	shift, and go to state 48
+	OR	shift, and go to state 69
+	SHL	shift, and go to state 70
+	SHR	shift, and go to state 58
+	SUB	shift, and go to state 71
+	XAND	shift, and go to state 73
+	XOR	shift, and go to state 77
+
+	assign	go to state 68
+	binary_operator_math	go to state 62
+	binary_operator	go to state 61
+
+State 84:
+
+	stmt_simple -> GOBEGIN TOKEN expr .	(Rule 24)
+	assignment -> expr . assign expr	(Rule 28)
+	expr -> expr . binary_operator expr	(Rule 40)
+
+	ADD	shift, and go to state 49
+	ALSO	shift, and go to state 63
+	AND	shift, and go to state 59
+	ARRAY	shift, and go to state 64
+	ASSIGN	shift, and go to state 78
+	ASSIGN_ADD	shift, and go to state 66
+	ASSIGN_AND	shift, and go to state 55
+	ASSIGN_DIV	shift, and go to state 79
+	ASSIGN_MOD	shift, and go to state 53
+	ASSIGN_MUL	shift, and go to state 57
+	ASSIGN_OR	shift, and go to state 51
+	ASSIGN_SUB	shift, and go to state 56
+	ASSIGN_XAND	shift, and go to state 65
+	ASSIGN_XOR	shift, and go to state 52
+	CAST	shift, and go to state 67
+	DIV	shift, and go to state 74
+	ELSE	shift, and go to state 76
+	EQ	shift, and go to state 81
+	GE	shift, and go to state 75
+	GT	shift, and go to state 80
+	LE	shift, and go to state 72
+	LT	shift, and go to state 60
+	MOD	shift, and go to state 50
+	MUL	shift, and go to state 54
+	NE	shift, and go to state 48
+	OR	shift, and go to state 69
+	SHL	shift, and go to state 70
+	SHR	shift, and go to state 58
+	SUB	shift, and go to state 71
+	XAND	shift, and go to state 73
+	XOR	shift, and go to state 77
+
+	$default	reduce using rule 24 (stmt_simple)
+
+	binary_operator	go to state 61
+	binary_operator_math	go to state 62
+	assign	go to state 68
+
+State 85:
+
+	list -> list decl_or_stmt EOL .	(Rule 4)
+
+	$default	reduce using rule 4 (list)
+
+State 86:
+
+	in_or_empty -> IN . var_block	(Rule 12)
+
+	BEGIN	shift, and go to state 93
+
+	var_block	go to state 94
+
+State 87:
+
+	sub -> label SUBPRO in_or_empty . out_or_empty block	(Rule 9)
+
+	OUT	shift, and go to state 95
+
+	$default	reduce using rule 15 (out_or_empty)
+
+	out_or_empty	go to state 96
+
+State 88:
+
+	var -> label type expr .	(Rule 10)
+	assignment -> expr . assign expr	(Rule 28)
+	expr -> expr . binary_operator expr	(Rule 40)
+
+	ADD	shift, and go to state 49
+	ALSO	shift, and go to state 63
+	AND	shift, and go to state 59
+	ARRAY	shift, and go to state 64
+	ASSIGN	shift, and go to state 78
+	ASSIGN_ADD	shift, and go to state 66
+	ASSIGN_AND	shift, and go to state 55
+	ASSIGN_DIV	shift, and go to state 79
+	ASSIGN_MOD	shift, and go to state 53
+	ASSIGN_MUL	shift, and go to state 57
+	ASSIGN_OR	shift, and go to state 51
+	ASSIGN_SUB	shift, and go to state 56
+	ASSIGN_XAND	shift, and go to state 65
+	ASSIGN_XOR	shift, and go to state 52
+	CAST	shift, and go to state 67
+	DIV	shift, and go to state 74
+	ELSE	shift, and go to state 76
+	EQ	shift, and go to state 81
+	GE	shift, and go to state 75
+	GT	shift, and go to state 80
+	LE	shift, and go to state 72
+	LT	shift, and go to state 60
+	MOD	shift, and go to state 50
+	MUL	shift, and go to state 54
+	NE	shift, and go to state 48
+	OR	shift, and go to state 69
+	SHL	shift, and go to state 70
+	SHR	shift, and go to state 58
+	SUB	shift, and go to state 71
+	XAND	shift, and go to state 73
+	XOR	shift, and go to state 77
+
+	$default	reduce using rule 10 (var)
+
+	assign	go to state 68
+	binary_operator	go to state 61
+	binary_operator_math	go to state 62
+
+State 89:
+
+	stmt_simple -> GOSUB TOKEN tupla expr .	(Rule 23)
+	assignment -> expr . assign expr	(Rule 28)
+	expr -> expr . binary_operator expr	(Rule 40)
+
+	ADD	shift, and go to state 49
+	ALSO	shift, and go to state 63
+	AND	shift, and go to state 59
+	ARRAY	shift, and go to state 64
+	ASSIGN	shift, and go to state 78
+	ASSIGN_ADD	shift, and go to state 66
+	ASSIGN_AND	shift, and go to state 55
+	ASSIGN_DIV	shift, and go to state 79
+	ASSIGN_MOD	shift, and go to state 53
+	ASSIGN_MUL	shift, and go to state 57
+	ASSIGN_OR	shift, and go to state 51
+	ASSIGN_SUB	shift, and go to state 56
+	ASSIGN_XAND	shift, and go to state 65
+	ASSIGN_XOR	shift, and go to state 52
+	CAST	shift, and go to state 67
+	DIV	shift, and go to state 74
+	ELSE	shift, and go to state 76
+	EQ	shift, and go to state 81
+	GE	shift, and go to state 75
+	GT	shift, and go to state 80
+	LE	shift, and go to state 72
+	LT	shift, and go to state 60
+	MOD	shift, and go to state 50
+	MUL	shift, and go to state 54
+	NE	shift, and go to state 48
+	OR	shift, and go to state 69
+	SHL	shift, and go to state 70
+	SHR	shift, and go to state 58
+	SUB	shift, and go to state 71
+	XAND	shift, and go to state 73
+	XOR	shift, and go to state 77
+
+	$default	reduce using rule 23 (stmt_simple)
+
+	binary_operator	go to state 61
+	binary_operator_math	go to state 62
+	assign	go to state 68
+
+State 90:
+
+	assignment -> expr . assign expr	(Rule 28)
+	expr -> expr . binary_operator expr	(Rule 40)
+	expr -> expr binary_operator expr .	(Rule 40)
+
+	ADD	shift, and go to state 49
+	ALSO	shift, and go to state 63
+	AND	shift, and go to state 59
+	ARRAY	shift, and go to state 64
+	ASSIGN	shift, and go to state 78
+	ASSIGN_ADD	shift, and go to state 66
+	ASSIGN_AND	shift, and go to state 55
+	ASSIGN_DIV	shift, and go to state 79
+	ASSIGN_MOD	shift, and go to state 53
+	ASSIGN_MUL	shift, and go to state 57
+	ASSIGN_OR	shift, and go to state 51
+	ASSIGN_SUB	shift, and go to state 56
+	ASSIGN_XAND	shift, and go to state 65
+	ASSIGN_XOR	shift, and go to state 52
+	CAST	shift, and go to state 67
+	DIV	shift, and go to state 74
+	ELSE	shift, and go to state 76
+	EQ	shift, and go to state 81
+	GE	shift, and go to state 75
+	GT	shift, and go to state 80
+	LE	shift, and go to state 72
+	LT	shift, and go to state 60
+	MOD	shift, and go to state 50
+	MUL	shift, and go to state 54
+	NE	shift, and go to state 48
+	OR	shift, and go to state 69
+	SHL	shift, and go to state 70
+	SHR	shift, and go to state 58
+	SUB	shift, and go to state 71
+	XAND	shift, and go to state 73
+	XOR	shift, and go to state 77
+
+	ADD	[reduce using rule 40 (expr)]
+	ALSO	[reduce using rule 40 (expr)]
+	AND	[reduce using rule 40 (expr)]
+	ARRAY	[reduce using rule 40 (expr)]
+	ASSIGN	[reduce using rule 40 (expr)]
+	ASSIGN_ADD	[reduce using rule 40 (expr)]
+	ASSIGN_AND	[reduce using rule 40 (expr)]
+	ASSIGN_DIV	[reduce using rule 40 (expr)]
+	ASSIGN_MOD	[reduce using rule 40 (expr)]
+	ASSIGN_MUL	[reduce using rule 40 (expr)]
+	ASSIGN_OR	[reduce using rule 40 (expr)]
+	ASSIGN_SUB	[reduce using rule 40 (expr)]
+	ASSIGN_XAND	[reduce using rule 40 (expr)]
+	ASSIGN_XOR	[reduce using rule 40 (expr)]
+	CAST	[reduce using rule 40 (expr)]
+	DIV	[reduce using rule 40 (expr)]
+	ELSE	[reduce using rule 40 (expr)]
+	EQ	[reduce using rule 40 (expr)]
+	GE	[reduce using rule 40 (expr)]
+	GT	[reduce using rule 40 (expr)]
+	LE	[reduce using rule 40 (expr)]
+	LT	[reduce using rule 40 (expr)]
+	MOD	[reduce using rule 40 (expr)]
+	MUL	[reduce using rule 40 (expr)]
+	NE	[reduce using rule 40 (expr)]
+	OR	[reduce using rule 40 (expr)]
+	SHL	[reduce using rule 40 (expr)]
+	SHR	[reduce using rule 40 (expr)]
+	SUB	[reduce using rule 40 (expr)]
+	XAND	[reduce using rule 40 (expr)]
+	XOR	[reduce using rule 40 (expr)]
+	$default	reduce using rule 40 (expr)
+
+	binary_operator_math	go to state 62
+	binary_operator	go to state 61
+	assign	go to state 68
+
+State 91:
+
+	assignment -> expr . assign expr	(Rule 28)
+	assignment -> expr assign expr .	(Rule 28)
+	expr -> expr . binary_operator expr	(Rule 40)
+
+	ADD	shift, and go to state 49
+	ALSO	shift, and go to state 63
+	AND	shift, and go to state 59
+	ARRAY	shift, and go to state 64
+	ASSIGN	shift, and go to state 78
+	ASSIGN_ADD	shift, and go to state 66
+	ASSIGN_AND	shift, and go to state 55
+	ASSIGN_DIV	shift, and go to state 79
+	ASSIGN_MOD	shift, and go to state 53
+	ASSIGN_MUL	shift, and go to state 57
+	ASSIGN_OR	shift, and go to state 51
+	ASSIGN_SUB	shift, and go to state 56
+	ASSIGN_XAND	shift, and go to state 65
+	ASSIGN_XOR	shift, and go to state 52
+	CAST	shift, and go to state 67
+	DIV	shift, and go to state 74
+	ELSE	shift, and go to state 76
+	EQ	shift, and go to state 81
+	GE	shift, and go to state 75
+	GT	shift, and go to state 80
+	LE	shift, and go to state 72
+	LT	shift, and go to state 60
+	MOD	shift, and go to state 50
+	MUL	shift, and go to state 54
+	NE	shift, and go to state 48
+	OR	shift, and go to state 69
+	SHL	shift, and go to state 70
+	SHR	shift, and go to state 58
+	SUB	shift, and go to state 71
+	XAND	shift, and go to state 73
+	XOR	shift, and go to state 77
+
+	ADD	[reduce using rule 28 (assignment)]
+	ALSO	[reduce using rule 28 (assignment)]
+	AND	[reduce using rule 28 (assignment)]
+	ARRAY	[reduce using rule 28 (assignment)]
+	ASSIGN	[reduce using rule 28 (assignment)]
+	ASSIGN_ADD	[reduce using rule 28 (assignment)]
+	ASSIGN_AND	[reduce using rule 28 (assignment)]
+	ASSIGN_DIV	[reduce using rule 28 (assignment)]
+	ASSIGN_MOD	[reduce using rule 28 (assignment)]
+	ASSIGN_MUL	[reduce using rule 28 (assignment)]
+	ASSIGN_OR	[reduce using rule 28 (assignment)]
+	ASSIGN_SUB	[reduce using rule 28 (assignment)]
+	ASSIGN_XAND	[reduce using rule 28 (assignment)]
+	ASSIGN_XOR	[reduce using rule 28 (assignment)]
+	CAST	[reduce using rule 28 (assignment)]
+	DIV	[reduce using rule 28 (assignment)]
+	ELSE	[reduce using rule 28 (assignment)]
+	EQ	[reduce using rule 28 (assignment)]
+	GE	[reduce using rule 28 (assignment)]
+	GT	[reduce using rule 28 (assignment)]
+	LE	[reduce using rule 28 (assignment)]
+	LT	[reduce using rule 28 (assignment)]
+	MOD	[reduce using rule 28 (assignment)]
+	MUL	[reduce using rule 28 (assignment)]
+	NE	[reduce using rule 28 (assignment)]
+	OR	[reduce using rule 28 (assignment)]
+	SHL	[reduce using rule 28 (assignment)]
+	SHR	[reduce using rule 28 (assignment)]
+	SUB	[reduce using rule 28 (assignment)]
+	XAND	[reduce using rule 28 (assignment)]
+	XOR	[reduce using rule 28 (assignment)]
+	$default	reduce using rule 28 (assignment)
+
+	binary_operator	go to state 61
+	binary_operator_math	go to state 62
+	assign	go to state 68
+
+State 92:
+
+	expr -> '(' expr ')' .	(Rule 42)
+
+	$default	reduce using rule 42 (expr)
+
+State 93:
+
+	var_block -> BEGIN . var_list END	(Rule 16)
+
+	TOKEN	shift, and go to state 8
+
+	var	go to state 97
+	label	go to state 99
+	var_list	go to state 98
+
+State 94:
+
+	in_or_empty -> IN var_block .	(Rule 12)
+
+	$default	reduce using rule 12 (in_or_empty)
+
+State 95:
+
+	out_or_empty -> OUT . var_block	(Rule 14)
+
+	BEGIN	shift, and go to state 93
+
+	var_block	go to state 100
+
+State 96:
+
+	sub -> label SUBPRO in_or_empty out_or_empty . block	(Rule 9)
+
+	BEGIN	shift, and go to state 3
+
+	block	go to state 101
+
+State 97:
+
+	var_list -> var .	(Rule 18)
+
+	$default	reduce using rule 18 (var_list)
+
+State 98:
+
+	var_block -> BEGIN var_list . END	(Rule 16)
+	var_list -> var_list . var	(Rule 17)
+
+	END	shift, and go to state 103
+	TOKEN	shift, and go to state 8
+
+	var	go to state 102
+	label	go to state 99
+
+State 99:
+
+	var -> label . type expr	(Rule 10)
+	var -> label . type	(Rule 11)
+
+	type	shift, and go to state 45
+
+State 100:
+
+	out_or_empty -> OUT var_block .	(Rule 14)
+
+	$default	reduce using rule 14 (out_or_empty)
+
+State 101:
+
+	sub -> label SUBPRO in_or_empty out_or_empty block .	(Rule 9)
+
+	$default	reduce using rule 9 (sub)
+
+State 102:
+
+	var_list -> var_list var .	(Rule 17)
+
+	$default	reduce using rule 17 (var_list)
+
+State 103:
+
+	var_block -> BEGIN var_list END .	(Rule 16)
+
+	$default	reduce using rule 16 (var_block)
+
+
+Summary:
+--------
+Number of rules         : 75
+Number of terminals     : 56
+Number of non-terminals : 22
+Number of states        : 104

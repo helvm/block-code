@@ -44,7 +44,10 @@ sub new
     return $self;
 }
 
-
+sub create
+{
+    
+}
 
 sub accept
 {
@@ -53,26 +56,30 @@ sub accept
     my $name = shift;
     $logger->debug ('accept name -> ' . $name) if $name;
 
-    my $class_name = $self->class_name;
+    $self->accept_class_name ($visitor) if ($self->class_name);
 
-    #my $class_name = $node->class_name;
+}
 
-    if ($class_name) {
-        my $method = 'visit_' . $class_name;
-        $logger->debug ('accept method -> ' . $method);
-        if ($visitor->can($method))
-        {
-            $visitor->$method ($self);
-        }
-        else
-        {
-            my $trace = Devel::StackTrace->new();
-            while ( my $frame = $trace->prev_frame() ) {
-                $logger->error ("Sub: ". $frame->subroutine());
-            }
+sub accept_class_name
+{
+    my $self = shift;
+    my $visitor = shift;
+    my $method = 'visit_' . $self->class_name;
+    $logger->debug ('accept method -> ' . $method);
+    if ($visitor->can($method))
+    {
+        $visitor->$method ($self);
+    }
+    else
+    {
+        my $trace = Devel::StackTrace->new();
+        while ( my $frame = $trace->prev_frame() ) {
+            $logger->error ("Sub: ". $frame->subroutine());
         }
     }
+
 }
+
 
 sub attr
 {

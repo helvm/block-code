@@ -1,0 +1,137 @@
+%{ %}
+%token TOKEN
+%token NUMBER
+%left ASSIGN ASSIGN_ADD ASSIGN_SUB ASSIGN_MUL ASSIGN_DIV ASSIGN_MOD ASSIGN_AND ASSIGN_OR ASSIGN_XOR ASSIGN_XAND 
+%left ELSE
+%left ALSO
+%left OR
+%left XOR
+%left AND
+%left EQ NE
+%left LT LE GT GE
+%left SHL SHR
+%left ADD SUB
+%left MUL DIV MOD
+%left CAST
+%left ARRAY
+%nonassoc UMINUS
+
+%%
+
+basic : block;
+
+block : BEGIN list END;
+
+
+list
+: decl_or_stmt EOL
+| list decl_or_stmt EOL
+;
+
+decl_or_stmt
+: decl
+| stmt
+;
+
+
+/* DECLARATION */
+
+decl
+: sub
+| var
+;
+
+sub : label SUBPRO in_or_empty out_or_empty block;
+
+var
+: label type expr
+| label type
+;
+
+in_or_empty
+: IN var_block
+|
+;
+
+out_or_empty
+: OUT var_block
+|
+;
+
+var_block : BEGIN var_list END;
+
+var_list
+: var_list var                      
+| var
+;
+
+
+/* STATEMENT */
+
+
+
+stmt
+: stmt_simple
+| compound
+;
+
+stmt_simple
+: ASSERTION expr                    {node::create ('Assert', $_[2])}
+| ASSIGMENT assignment              {$_[2]}
+| GOSUB TOKEN tupla expr            {}
+| GOBEGIN TOKEN expr
+| GOEND TOKEN expr
+;
+
+compound
+: label block                       {node::create('Compoud', $_[2], $_[1]) }
+| block                             {node::create('Compoud', $_[1]) }
+;
+
+/* ASSIGNMENT */
+
+assignment : expr assign expr       { node::create ('Assign', $_[2], $_[1], $_[3]) };
+
+assign
+: ASSIGN
+| ASSIGN_ADD | ASSIGN_SUB | ASSIGN_MUL | ASSIGN_DIV | ASSIGN_MOD
+| ASSIGN_AND | ASSIGN_OR | ASSIGN_XOR | ASSIGN_XAND;
+
+/* EXPRESSION */
+
+expr
+: assignment
+| expr binary_operator expr         { node::create ('BinaryOp', $_[2], $_[1], $_[3]) }
+| unary_operator expr %prec UMINUS  { node::create ('UnaryOp', $_[1], $_[2]) }
+| '(' expr ')' { $_[2] }
+| NUMBER
+| TOKEN 
+;
+
+binary_operator
+: binary_operator_math
+| EQ | NE
+| LT | GT | LE | GE
+| ALSO | ELSE
+| SHR | SHL
+| ARRAY | CAST
+;
+
+binary_operator_math
+: ADD | SUB | MUL | DIV | MOD
+| AND | OR | XOR | XAND
+;
+
+unary_operator
+: SIZEOF
+| PTR | REF
+| ADD | SUB
+| NEG | NOT
+;
+
+/* OTHER */
+
+label : TOKEN ':' ;
+
+%%
+
